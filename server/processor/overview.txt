@@ -1,0 +1,7 @@
+-the inital processor -> that will create the transcation object and push it into deque.
+-here i will require some thread that will do this task for me.
+-here i will require a deque.
+-then i will require the transcation processor to make the transcation happen.
+-also i wll have to update the status also so that it becomes easy for me communicate also
+
+
