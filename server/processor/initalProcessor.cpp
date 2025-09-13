@@ -30,9 +30,28 @@ public:
         Dequeue->push(logger->pop());
     }
 
-    bool isEmpty(){
-        return (long long)logger->getSize() == (long long)0;
-    }
+    // bool isEmpty(){
+    //     return (long long)logger->getSize() == (long long) 0;
+    // }
 };
 
 // later i can just start the threads to execute this.
+
+void task(InitialProcessor & p){
+
+    while(true){
+        p.push();
+        this_thread::sleep_for(chrono::seconds(2));
+    }
+}
+
+
+int main(){
+
+    // here i will be starting with the starting threads for this
+    InitialProcessor p;
+    thread t(task);
+
+    if(t.joinable()) t.join();
+
+}

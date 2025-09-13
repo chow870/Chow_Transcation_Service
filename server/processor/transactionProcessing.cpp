@@ -6,6 +6,14 @@
 #include<condition_variable>
 using namespace std;
 
+// Forward declaration
+class TransactionStrategy;
+
+class TransactionStrategy{
+    public : 
+    virtual bool makePayement(float amount) =0;
+    virtual ~TransactionStrategy(){};
+};
 
 class TransactionProcessor{
     private : 
@@ -20,18 +28,9 @@ class TransactionProcessor{
     bool makePayement(float amount){
         return processor->makePayement(amount);
     }
-
-};
-
-
-class TransactionStrategy{
-    public : 
-    virtual bool makePayement(float amount) =0;
-    virtual ~TransactionStrategy(){};
 };
 
 class CreditCardStrategy : public TransactionStrategy{
-
     public : 
     CreditCardStrategy(){
         cout<<"made an instance of the credit card "<<endl;
@@ -42,12 +41,9 @@ class CreditCardStrategy : public TransactionStrategy{
         this_thread::sleep_for(chrono::microseconds(10));
         return true;
     }
-
 };
 
-
 class UPIStrategy : public TransactionStrategy{
-
     public : 
     UPIStrategy(){
         cout<<"made an instance of the UPIStrategy"<<endl;
@@ -58,11 +54,9 @@ class UPIStrategy : public TransactionStrategy{
         this_thread::sleep_for(chrono::microseconds(10));
         return true;
     }
-
 };
 
 class NetBankingStrategy : public TransactionStrategy{
-
     public : 
     NetBankingStrategy(){
         cout<<"made an instance of the NetBankingStrategy"<<endl;
@@ -71,15 +65,13 @@ class NetBankingStrategy : public TransactionStrategy{
     bool makePayement(float amount){
         // do some processing here
         this_thread::sleep_for(chrono::microseconds(10));
+        return true;  // Added missing return statement
     }
-
 };
-
 
 // there is a catch, agar aak TransactionHandler banaya and multple processor set kiya to performance bottle neck aayega
 // thus each thread ko mai individual handler dunga
 class TransactionHandler{
-
     private : 
     TransactionProcessor processor;
     TransactionQueue* Dequeue;
@@ -89,7 +81,6 @@ class TransactionHandler{
         processor = t;
         Dequeue = &TransactionQueue::getInstance();
     }
-
 
     // this will be inisiated with the help of the 
     void handlePayement(){
@@ -105,9 +96,26 @@ class TransactionHandler{
              processor.setTransactionStrategy(new NetBankingStrategy());
         }
         bool status = processor.makePayement(temp.amount);
+        cout<<"the status is : "<<status<<endl;
         // file mai log likhna parega isme bhi. 
     }
-
-
-
 };
+
+void task(TransactionHandler & p){
+
+    while(true){
+        p.handlePayement();
+        this_thread::sleep_for(chrono::seconds(2));
+    }
+}
+
+int main(){
+
+    TransactionProcessor tp;
+    TransactionHandler th(tp);
+
+    thread t(task);
+
+    if(t.joinable()) t.join();
+
+}
