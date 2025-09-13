@@ -17,7 +17,7 @@ class Logger {
 private:
     static vector<ClientTranscationInstance> rec;
     static mutex mtx;
-    static condition_variable isEmpty;
+    
     static long long count;
     static long long mod;
     static Logger* log;
@@ -29,17 +29,20 @@ private:
     static string TokenGenerator();
 
 public:
+    static condition_variable isEmpty;
     static Logger& getInstance(); // get singleton instance
     static void push(tempTransaction t);
     static size_t getSize(){
-        unique_lock<mutex>lock(mtx);
+        // unique_lock<mutex>lock(mtx);
         return rec.size();
     }
     static ClientTranscationInstance & pop(){
         cout<<"reached the pop of logger "<<'\n';
         unique_lock<mutex>lock(mtx);
         cout<<"the lock is accessible to me in pop "<<'\n';
-        isEmpty.wait(lock, []{ return (Logger::getSize() != (size_t)0);} ); // means if not empty come on
+        cout<<"the logger size is : "<<Logger::getSize() <<" the index is : "<<Logger::index<<'\n';
+        isEmpty.wait(lock, []{ return (((int) Logger::getSize()) > index+1);} ); // means if not empty come on
+        cout<<"i was able to pop out something"<<endl;
         return rec[index++]; // index incremented
     }
 };

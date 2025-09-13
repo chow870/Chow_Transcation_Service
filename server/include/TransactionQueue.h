@@ -21,7 +21,7 @@ private:
     TransactionQueue& operator=(const TransactionQueue&) = delete;
 
 public:
-
+   
     static TransactionQueue& getInstance() {
         static TransactionQueue instance; 
         return instance;
@@ -45,13 +45,13 @@ public:
 
 
     bool empty() {
-        unique_lock<mutex> lock(mtx);
+        // unique_lock<mutex> lock(mtx);
         return myqueue.empty();
     }
 
 
     size_t size() {
-        unique_lock<mutex> lock(mtx);
+        // unique_lock<mutex> lock(mtx);
         return myqueue.size();
     }
 };
