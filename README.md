@@ -1,8 +1,8 @@
-# 🚀 Chow Transaction Processing System
+#  Chow Transaction Processing System
 
 A **high-performance, multi-threaded transaction processing system** built in C++ that demonstrates enterprise-level concurrent programming, design patterns, and real-time payment processing architecture.
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [🏗️ System Architecture](#️-system-architecture)
 - [🎯 Key Features](#-key-features)
@@ -16,9 +16,6 @@ A **high-performance, multi-threaded transaction processing system** built in C+
 - [📈 Performance Features](#-performance-features)
 - [🔒 Thread Safety](#-thread-safety)
 - [📝 Usage Examples](#-usage-examples)
-- [🐛 Debugging & Monitoring](#-debugging--monitoring)
-- [🤝 Contributing](#-contributing)
-- [📄 License](#-license)
 
 ## 🏗️ System Architecture
 
@@ -42,7 +39,7 @@ A **high-performance, multi-threaded transaction processing system** built in C+
 └─────────────────┘    └──────────────────┘    └─────────────────────┘
 ```
 
-## 🎯 Key Features
+##  Key Features
 
 ### 🏢 **Enterprise-Grade Architecture**
 - **Multi-threaded Processing**: Concurrent transaction handling
@@ -50,19 +47,19 @@ A **high-performance, multi-threaded transaction processing system** built in C+
 - **Producer-Consumer Pattern**: Efficient data flow management
 - **Real-time Monitoring**: Live system statistics and performance metrics
 
-### 💳 **Payment Processing**
+###  **Payment Processing**
 - **Multiple Payment Methods**: UPI, Credit Card, Net Banking
 - **Strategy Pattern Implementation**: Pluggable payment processors
 - **Transaction State Management**: Complete lifecycle tracking
 - **Automatic Token Generation**: Unique transaction IDs with timestamps
 
-### 🔒 **Concurrency & Safety**
+###  **Concurrency & Safety**
 - **Singleton Pattern**: Centralized logger and queue management
 - **Condition Variables**: Efficient thread synchronization
 - **Deadlock Prevention**: Proper lock ordering and timeouts
 - **Race Condition Mitigation**: Atomic operations and mutex protection
 
-### 📊 **Monitoring & Debugging**
+###  **Monitoring & Debugging**
 - **Thread-Safe Console Output**: Clean, organized logging
 - **Real-time Statistics**: System performance metrics
 - **Transaction Tracing**: End-to-end transaction visibility
@@ -137,25 +134,13 @@ g++ server/processor/transactionProcessing.cpp server/headerImplementation/clien
 g++ unified_main.cpp server/headerImplementation/clientApiEndPoint.cpp -I server/include -o unified_system
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Running the Complete System
 ```bash
 # Compile and run the unified system
 g++ unified_main.cpp server/headerImplementation/clientApiEndPoint.cpp -I server/include -o unified_system
 ./unified_system
-```
-
-### Expected Output
-```
-████████████████████████████████████████████████████████████████████████████████
-             🚀 CHOW TRANSACTION PROCESSING SYSTEM 🚀
-████████████████████████████████████████████████████████████████████████████████
-
-[14:32:15.123] [CLIENT        ] 📝 Transaction generated | Count: #1 | Amount: $234.3
-[14:32:15.125] [PROCESSOR     ] 📦 Transaction moved successfully | Logger: 0 | Queue: 1
-[14:32:15.127] [HANDLER       ] ⚡ Processing transaction | ID: 17349872... | Method: UPI
-[14:32:15.129] [HANDLER       ] 💳 Payment completed | Status: ✅ SUCCESS
 ```
 
 ## 🏛️ Design Patterns
@@ -195,16 +180,16 @@ public:
 - **Buffer**: Thread-safe `Logger` and `TransactionQueue`
 - **Consumer**: `TransactionHandler` processes payments
 
-## 🧵 Threading Architecture
+##  Threading Architecture
 
 ### Thread Roles
 
 | Thread | Component | Responsibility | Frequency |
 |--------|-----------|----------------|-----------|
-| 🔵 **Client** | `AggressiveTestUser` | Generate transactions | Every 2 seconds |
-| 🟢 **Processor** | `InitialProcessor` | Move Logger→Queue | Every 100ms |
-| 🟠 **Handler** | `TransactionHandler` | Process payments | On-demand |
-| 🟣 **Monitor** | `MonitoringThread` | System statistics | Every 10 seconds |
+| **Client** | `AggressiveTestUser` | Generate transactions | Every 2 seconds |
+|  **Processor** | `InitialProcessor` | Move Logger→Queue | Every 100ms |
+|  **Handler** | `TransactionHandler` | Process payments | On-demand |
+|  **Monitor** | `MonitoringThread` | System statistics | Every 10 seconds |
 
 ### Synchronization Mechanisms
 - **Mutexes**: Protect shared data structures
@@ -212,7 +197,7 @@ public:
 - **Atomic Operations**: Lock-free counters and flags
 - **RAII**: Automatic resource management
 
-## 📊 System Components
+##  System Components
 
 ### Core Classes
 
@@ -235,21 +220,8 @@ public:
 - **`CreditCardStrategy`**: Credit card transaction handling  
 - **`NetBankingStrategy`**: Online banking integration
 
-## 📈 Performance Features
 
-### Optimization Techniques
-- **Lock Granularity**: Fine-grained locking to minimize contention
-- **Condition Variables**: Avoid busy-waiting and CPU waste
-- **Memory Pool**: Efficient object allocation (planned)
-- **Batch Processing**: Group operations for better throughput
-
-### Performance Metrics
-- **Transaction Rate**: ~30 transactions per minute (configurable)
-- **Latency**: Sub-millisecond processing per transaction
-- **Throughput**: Scales with CPU cores
-- **Memory Usage**: ~10MB baseline + transaction data
-
-## 🔒 Thread Safety
+##  Thread Safety
 
 ### Safety Mechanisms
 1. **Mutex Protection**: All shared data structures
@@ -267,7 +239,7 @@ void Logger::push(tempTransaction t) {
 }
 ```
 
-## 📝 Usage Examples
+##  Usage Examples
 
 ### Custom Transaction Generation
 ```cpp
@@ -293,13 +265,11 @@ public:
 };
 ```
 
-## 🐛 Debugging & Monitoring
+##  Debugging & Monitoring
 
 ### Built-in Monitoring
 - **Real-time Statistics**: Queue sizes, transaction counts
 - **Thread Status**: Active/idle state monitoring  
-- **Performance Metrics**: Processing rates and latencies
-- **Error Tracking**: Exception handling and reporting
 
 ### Debug Output Control
 ```cpp
@@ -313,54 +283,10 @@ printThreadSafe("DEBUG", "Transaction processed",
 - `logs/internalDatabaseRecord.txt`: Internal system state
 - `logs/overview.txt`: System operational logs
 
-## 🔮 Future Enhancements
-
-### Planned Features
-- **Database Integration**: PostgreSQL/MySQL support
-- **REST API**: HTTP endpoints for external integration
-- **Configuration Management**: XML/JSON config files
-- **Load Balancing**: Multi-instance deployment
-- **Metrics Dashboard**: Real-time web UI
-- **Message Queues**: RabbitMQ/Apache Kafka integration
-
-### Performance Improvements
-- **Memory Pool**: Custom allocators for transaction objects
-- **Lock-free Algorithms**: CAS-based data structures
-- **NUMA Optimization**: CPU affinity and memory locality
-- **Batch Processing**: Grouped transaction handling
-
-## 🤝 Contributing
-
-### Development Workflow
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Follow coding standards (see `.vscode/settings.json`)
-4. Add comprehensive tests
-5. Commit changes (`git commit -m 'Add amazing feature'`)
-6. Push to branch (`git push origin feature/amazing-feature`)
-7. Open Pull Request
-
-### Coding Standards
-- **C++ Style**: Modern C++17/20 features
-- **Naming**: camelCase for variables, PascalCase for classes
-- **Comments**: Comprehensive documentation for public APIs
-- **Threading**: Always use RAII for lock management
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 📞 Contact & Support
-
-- **Author**: Aditya (Original Architecture & Implementation)
-- **Documentation**: Enhanced with AI assistance
-- **Issues**: Please report bugs via GitHub Issues
-- **Discussions**: Use GitHub Discussions for questions
-
----
 
 ### 🌟 **Star this repository if you found it helpful!**
 
-*Built with ❤️ using modern C++ and enterprise design patterns*
+*Built with ❤️ using modern C++ and design patterns*
