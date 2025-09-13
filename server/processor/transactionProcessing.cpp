@@ -84,8 +84,10 @@ class TransactionHandler{
 
     // this will be inisiated with the help of the 
     void handlePayement(){
+        cout<<"reached handlePayement"<<endl;
         ClientTranscationInstance temp = Dequeue->pop();
         // abhi file mai log bhi linkha hai yaha par.
+        cout<<"yeah i have got something"<<endl;
         if(temp.modeOfPayement == "UPI"){
             processor.setTransactionStrategy(new UPIStrategy());
         }
@@ -99,23 +101,37 @@ class TransactionHandler{
         cout<<"the status is : "<<status<<endl;
         // file mai log likhna parega isme bhi. 
     }
+
+    void processLoop() {
+        cout << "TransactionHandler thread started..." << endl;
+        while(true){
+            handlePayement();
+            this_thread::sleep_for(chrono::seconds(2));
+        }
+    }
+
+
 };
 
-void task(TransactionHandler & p){
+// void task(TransactionHandler & p){
 
-    while(true){
-        p.handlePayement();
-        this_thread::sleep_for(chrono::seconds(2));
-    }
-}
+//     while(true){
+//         p.handlePayement();
+//         this_thread::sleep_for(chrono::seconds(2));
+//     }
+// }
 
 int main(){
 
     TransactionProcessor tp;
-    TransactionHandler th(tp);
+    TransactionHandler handler(tp);
+    
+    // Method 1: Using lambda (recommended)
+    thread processingThread([&handler]() {
+        handler.processLoop();
+    });
 
-    thread t(task);
 
-    if(t.joinable()) t.join();
+    if(processingThread.joinable()) processingThread.join();
 
 }

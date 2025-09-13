@@ -36,7 +36,9 @@ public:
         return rec.size();
     }
     static ClientTranscationInstance & pop(){
+        cout<<"reached the pop of logger "<<'\n';
         unique_lock<mutex>lock(mtx);
+        cout<<"the lock is accessible to me in pop "<<'\n';
         isEmpty.wait(lock, []{ return (Logger::getSize() != (size_t)0);} ); // means if not empty come on
         return rec[index++]; // index incremented
     }
