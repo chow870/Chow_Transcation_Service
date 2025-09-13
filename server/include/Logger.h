@@ -52,10 +52,10 @@ public:
     float amount;
 
     tempTransaction();
-    void setTranscationId(string& token);
-    void setPhoneNumber(string& phoneNumber);
-    void setName(string& name);
-    void setModeOfPayement(string& modeOfPayement);
+    void setTranscationId(string token);
+    void setPhoneNumber(string phoneNumber);
+    void setName(string name);
+    void setModeOfPayement(string modeOfPayement);
     void setAmount(float amount);
   
     string getTansactionId();

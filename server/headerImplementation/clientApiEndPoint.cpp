@@ -50,16 +50,16 @@ tempTransaction::tempTransaction() {
     this->amount = 0.0;
 }
 
-void tempTransaction::setTranscationId(string& token) {
+void tempTransaction::setTranscationId(string token) {
     this->TranscationId = token;
 }
-void tempTransaction::setPhoneNumber(string& phoneNumber) {
+void tempTransaction::setPhoneNumber(string phoneNumber) {
     this->phoneNumber = phoneNumber;
 }
-void tempTransaction::setName(string& name) {
+void tempTransaction::setName(string name) {
     this->name = name;
 }
-void tempTransaction::setModeOfPayement(string& modeOfPayement) {
+void tempTransaction::setModeOfPayement(string modeOfPayement) {
     this->modeOfPayement = modeOfPayement;
 }
 void tempTransaction::setAmount(float amount) {
