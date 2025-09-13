@@ -1,0 +1,2 @@
+this will contain the transcationId [50 length] and status
+example : [id] : [processing/success/failed] this is meant for inputTranscations
