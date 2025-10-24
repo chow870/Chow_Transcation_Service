@@ -22,7 +22,7 @@ using namespace std;
 // ============================================================================
 
 // Forward declaration (ORIGINAL CODE - NO CHANGES)
-class TransactionStrategy;
+class TransactionStrategy; // this is to be read.  TODO
 
 class TransactionStrategy{
     public : 
@@ -88,8 +88,9 @@ class NetBankingStrategy : public TransactionStrategy{
     }
 };
 
-// there is a catch, agar aak TransactionHandler banaya and multple processor set kiya to performance bottle neck aayega
+// there is a catch, agar aak TransactionHandler banaya and multiple processor set kiya to performance bottle neck aayega
 // thus each thread ko mai individual handler dunga 
+
 class TransactionHandler{
     private : 
     TransactionProcessor processor;
